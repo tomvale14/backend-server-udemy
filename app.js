@@ -2,9 +2,25 @@
 var express = require('express');
 // obtengo una referencia a la LIBRERIA de mongoose
 var mongoose = require('mongoose');
+// referencia al middleware body-parser
+var bodyParser = require('body-parser');
 
 // Inicializar variables
 var app = express();
+
+
+// Body Parser
+// NOTA: cuando entre una petición, este middleware siempre se va a ejecutar.
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+    // parse application/json
+app.use(bodyParser.json())
+
+
+// Importar los archivos de Rutas
+var appRoutes = require('./routes/app');
+var usuarioRoutes = require('./routes/usuario');
+var loginRoutes = require('./routes/login');
 
 // para establecer la CONEXION de mongoose a la BASE de DATOS
 mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) => {
@@ -17,16 +33,15 @@ mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, res) =
 
 });
 
-// Rutas
-app.get('/', (req, res, next) => {
+/* RUTAS */
 
-    res.status(200).json({
-        ok: true,
-        mensaje: 'Peticion realizada correctamente'
-    });
+// Cuando coincida con el path indicado en el primer parámetro, 
+// lo maneja la variable correspondiente en el segundo parámetro.
+// app.use('path_del_url', 'js_manejador_peticion');
 
-});
-
+app.use('/', appRoutes); // path principal
+app.use('/login', loginRoutes); // path de Login
+app.use('/usuario', usuarioRoutes); // path de Usuario
 
 // Escuchar Peticiones
 app.listen(3000, () => {
