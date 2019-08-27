@@ -12,6 +12,7 @@ var SEED = require('../config/config').SEED;
 exports.verificaToken = function(req, res, next) {
 
     // 1. leemos el token a través de la petición URL
+    //      => es el contenido del parámetro de la URL 'token'
     var token = req.query.token;
 
     // 2. verificamos el token a través de jsonwebtoken (jwt)
@@ -29,13 +30,13 @@ exports.verificaToken = function(req, res, next) {
         /**
          * 2.2 colocar en la request el usuario que se encuentra en el payload (objeto decoded)
          *     para que en cualquier lugar donde se utilice la función verificaToken esté disponible
-         *     la información del usuario en el request.
+         *     la información del USUARIO en el request.
          */
         req.usuario = decoded.usuario;
 
-
         // 2.3 si no hay errores en la verificación del token => indicamos que puede continuar con
         //     los siguientes servicios que se encuentren a continuación
+
         next();
 
         // res.status(200).json({

@@ -1,9 +1,14 @@
+/**********************************************
+ * CODIGO PARA PUEBAS DE NUEVAS RUTAS
+ *  => Esqueleto Base para una petición REST
+ *********************************************/
+
 var express = require('express');
 
 // levanto la app
 var app = express();
 
-// Ruta Principal del app.js
+// Ruta padre
 app.get('/', (req, res, next) => {
 
     res.status(200).json({

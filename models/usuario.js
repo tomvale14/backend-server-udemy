@@ -13,8 +13,8 @@ var rolesValidos = {
     message: '{VALUE} no es un rol permitido'
 };
 
-// referencia al esquema de la coleccion usuarios del esquema:
-// <nombre_coleccion_en_singular>Schema
+// referencia al esquema de la coleccion del esquema 'usuarios'
+// nomenclatura nombrado:    <nombre_coleccion_en_singular>Schema
 
 var usuarioSchema = new Schema({
 
