@@ -1,3 +1,6 @@
 
-
+# dependencias de backend-server
 node_modules/
+
+# dependencias de google-signin-demo que se encuentra dentro de backend-server
+google-signin-demo/node_modules/
